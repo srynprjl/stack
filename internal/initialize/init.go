@@ -59,8 +59,7 @@ func Init(lang string, p projects.Project, dependencies []string) {
 	paths := path.Clean(data["path"].(string))
 
 	if paths == config.Conf.ProjectLocation || paths == "" {
-		path.Join(config.Conf.ProjectLocation, data["name"].(string))
-		// update db tables
+		paths = path.Join(config.Conf.ProjectLocation, data["name"].(string))
 		p.Update(map[string]any{"path": paths})
 	}
 	data["path"] = paths

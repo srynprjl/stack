@@ -42,9 +42,5 @@ type Config struct {
 	ProjectLocation string         `yaml:"project_location"`
 	Database        DatabaseConfig `yaml:"db"`
 	Web             WebConfig      `yaml:"web"`
-	Bot             DiscordBot     `yaml:"discord"`
-}
-
-type DiscordBot struct {
-	Token string `yaml:"token"`
+	// Bot             DiscordBot     `yaml:"discord"`
 }

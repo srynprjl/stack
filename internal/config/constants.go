@@ -9,6 +9,7 @@ import (
 const PROJECT_NAME = "stack"
 
 var Conf Config
+var HOME_DIR, _ = os.UserHomeDir()
 var CONFIG_DIR, _ = os.UserConfigDir()
 var CONFIG_LOCATION = fmt.Sprintf("%s/%s", CONFIG_DIR, PROJECT_NAME)
 

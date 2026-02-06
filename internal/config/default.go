@@ -1,19 +1,18 @@
 package config
 
+import "path"
+
 var DefaultConfig = Config{
-	ProjectLocation: "/home/srynprjl/.local/development/projects",
+	ProjectLocation: path.Join(HOME_DIR, "projects"),
 	Database: DatabaseConfig{
 		Type:     "sqlite",
-		Location: "/home/srynprjl/.local/share/" + PROJECT_NAME,
-		Name:     "sandwich_test",
+		Location: path.Join(CONFIG_DIR, PROJECT_NAME),
+		Name:     "stack_data",
 	},
 	Web: WebConfig{
 		Host: "127.0.0.1",
 		Port: 5000,
 	},
-	// Bot: DiscordBot{
-	// 	Token: "",
-	// },
 }
 
 var DefaultTables = map[string]Table{
