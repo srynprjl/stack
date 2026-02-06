@@ -1,10 +1,10 @@
 package config
 
 var DefaultConfig = Config{
-	ProjectLocation: "/home/srynprjl/.local/development/projects/",
+	ProjectLocation: "/home/srynprjl/.local/development/projects",
 	Database: DatabaseConfig{
 		Type:     "sqlite",
-		Location: "/home/srynprjl/.local/share/sandwich/",
+		Location: "/home/srynprjl/.local/share/" + PROJECT_NAME,
 		Name:     "sandwich_test",
 	},
 	Web: WebConfig{

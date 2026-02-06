@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 	"github.com/srynprjl/stack/internal/utils/exports"
@@ -13,14 +14,15 @@ var rootCmd = &cobra.Command{
 	Short: "A project management app for personal use",
 	Run: func(cmd *cobra.Command, args []string) {
 		var (
-			version = "alpha"
+			version          = "alpha"
+			year, month, day = time.Now().Date()
+			date             = fmt.Sprintf("%v-%v-%v", day, month, year)
 		)
 		if v, _ := cmd.Flags().GetBool("version"); v {
-			fmt.Printf("stack %v\nCopyright (C) 2026 sysnefo.", version)
+			fmt.Printf("Stack %v\nCopyright (C) 2026 sysnefo. Built on %s\n", version, date)
 		} else {
 			cmd.Help()
 		}
-
 	},
 }
 

@@ -62,7 +62,6 @@ func InitJS(project_data map[string]any, framework string, lang string) {
 	default:
 		InitViteToolkits(project_data, toolkit, lang, framework)
 	}
-
 	fmt.Println("Initialized. ")
 
 }
@@ -83,7 +82,7 @@ func InitViteToolkits(project_data map[string]any, toolkit string, lang string, 
 
 func prepareName(name string) string {
 	data := strings.ToLower(name)
-	data = strings.ReplaceAll(data, " ", "")
+	data = strings.ReplaceAll(data, " ", "-")
 	return data
 }
 

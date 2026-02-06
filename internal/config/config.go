@@ -4,12 +4,13 @@ import (
 	"errors"
 	"log"
 	"os"
+	"path"
 
 	"gopkg.in/yaml.v3"
 )
 
 func ConfigExists(Location string) bool {
-	filePath := Location + "config.yml"
+	filePath := path.Join(Location, "config.yml")
 	_, err := os.Stat(filePath)
 	if os.IsNotExist(err) {
 		return false
@@ -38,7 +39,8 @@ func NewConfig() {
 		if !ConfigDirExists(CONFIG_LOCATION) {
 			CreateConfigDir(CONFIG_LOCATION)
 		}
-		_, err := os.Create(CONFIG_LOCATION + "config.yml")
+		configPath := path.Join(CONFIG_LOCATION, "config.yml")
+		config, err := os.Create(configPath)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -46,14 +48,14 @@ func NewConfig() {
 		if yamlErr != nil {
 			log.Fatal(yamlErr)
 		}
-		os.WriteFile(CONFIG_LOCATION+"config.yml", data, 0)
+		config.Write(data)
 	}
 
 }
 
 func LoadConfig(Location string) (Config, error) {
 	c := Config{}
-	yf, err := os.ReadFile(Location + "config.yml")
+	yf, err := os.ReadFile(path.Join(Location, "config.yml"))
 	if err != nil {
 		return c, err
 	}

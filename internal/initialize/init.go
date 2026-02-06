@@ -2,7 +2,7 @@ package initialize
 
 import (
 	"fmt"
-	"strings"
+	"path"
 
 	"github.com/srynprjl/stack/internal/category"
 	"github.com/srynprjl/stack/internal/config"
@@ -56,18 +56,14 @@ func Init(lang string, p projects.Project, dependencies []string) {
 		return
 	}
 	// update path with checks
-	path := data["path"].(string)
-	if !strings.HasSuffix(path, "/") {
-		path = path + "/"
-		p.Update(map[string]any{"path": path})
-	}
+	paths := path.Clean(data["path"].(string))
 
-	if path == config.Conf.ProjectLocation || path == "/" {
-		path = config.Conf.ProjectLocation + data["name"].(string) + "/"
+	if paths == config.Conf.ProjectLocation || paths == "" {
+		path.Join(config.Conf.ProjectLocation, data["name"].(string))
 		// update db tables
-		p.Update(map[string]any{"path": path})
+		p.Update(map[string]any{"path": paths})
 	}
-	data["path"] = path
+	data["path"] = paths
 	// call functions based on lang
 	switch lang {
 	case "go", "golang":
